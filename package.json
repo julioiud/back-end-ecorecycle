@@ -1,0 +1,14 @@
+{
+  "name": "back-end-ecorecycle",
+  "version": "1.0.0",
+  "description": "API REST app Eco-recycle",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eco-recycle"
+  ],
+  "author": "San Jose de la Salle - Medellín",
+  "license": "ISC"
+}
