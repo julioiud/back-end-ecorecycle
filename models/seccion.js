@@ -1,11 +1,10 @@
 const { Schema, model } = require('mongoose')
 
-const TipoDocumentoSchema = Schema({
-    nombre: {
+const SeccionSchema = Schema({
+    nombreseccion: {
         type: String,
         required: [true, 'Nombre es requerido'],
         minLength: 1,
-        unique: [true, 'Nombre repetido']
     },
     descripcion: {
         type: String
@@ -17,8 +16,8 @@ const TipoDocumentoSchema = Schema({
     fechaActualizacion: {
         type: Date,
         default: new Date()
-    }
-    //Falta variable de quien hizo la elección tipo de documento//
+    },
+    //Falta variable quien lo hizo//
 })
 
-module.exports = model('TipoDocumento', TipoDocumentoSchema)
+module.exports = model('Seccion', SeccionSchema)
