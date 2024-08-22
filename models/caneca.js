@@ -12,7 +12,7 @@ const CanecaSchema = Schema({
     descripcion: {
         type: String
     },
-    informacionqr: {
+    informacionQR: {
         type: String
     },
 })
