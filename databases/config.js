@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const mongoConection = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
-            dbName: 'eco-recycle'
+            dbName: 'eco-recycle',
+            autoCreate: true
         })
         console.log('Conexion exitosa!')
     } catch(e){
