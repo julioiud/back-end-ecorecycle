@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose')
 
-const RoleSchema = Schema({
-    nombre: {
+const ProductoValidoSchema = Schema({
+    serial: {
         type: String,
-        required: [true, 'Nombre rol es requerido'],
+        required: [true, 'Serial es requerido'],
         minLength: 1,
-        unique: [true, 'Nombre repetido']
+        unique: [true, 'Serial repetido']
     },
-    descripcion: {
+    patron: {
         type: String
     },
     fechaCreacion: {
@@ -19,4 +19,4 @@ const RoleSchema = Schema({
     }
 })
 
-module.exports = model('Role', RoleSchema)
+module.exports = model('ProductoValido', ProductoValidoSchema)

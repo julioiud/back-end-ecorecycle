@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose')
 
-const RoleSchema = Schema({
+const SeccionSchema = Schema({
     nombre: {
         type: String,
-        required: [true, 'Nombre rol es requerido'],
+        required: [true, 'Nombre es requerido'],
         minLength: 1,
         unique: [true, 'Nombre repetido']
     },
@@ -19,4 +19,4 @@ const RoleSchema = Schema({
     }
 })
 
-module.exports = model('Role', RoleSchema)
+module.exports = model('Seccion', SeccionSchema)
