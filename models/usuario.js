@@ -6,6 +6,11 @@ const UsuarioSchema = Schema({
         ref: 'TipoDocumento',
         required: true
     },
+    documento: {
+        type: String,
+        required: true,
+        unique: [true, 'Documento ya existe']
+    },
     fechaNacimiento: {
         type: Date
     },
@@ -44,7 +49,14 @@ const UsuarioSchema = Schema({
         default: true
     },
     genero: {
-        type: String // Enum
+        type: String, // Enum
+        enum: ["M", "F", "O", "N"],
+        default: "N"
+    },
+    role: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role',
+        required: true
     }
 })
 
