@@ -14,9 +14,9 @@ app.use(
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 
-//const generos = require('./routes/GeneroRoute')
+const usuarios = require('./routes/usuarios')
 
-// app.use('/api/v1/generos', generos)
+app.use('/api/v1/usuarios', usuarios)
 
 app.get("*", (req, res) => {
     return res.status(404).json({

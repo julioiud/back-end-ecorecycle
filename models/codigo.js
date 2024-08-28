@@ -17,6 +17,11 @@ const CodigoSchema = Schema({
         ref: 'Usuario',
         required: true
     },
+    caneca: {
+        type: Schema.Types.ObjectId,
+        ref: 'Caneca',
+        required: true
+    },
     tipoProducto : {
         type: Schema.Types.ObjectId,
         ref: 'TipoProducto'
