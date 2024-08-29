@@ -2,7 +2,7 @@ const Codigo = require('../models/codigo')
 const Usuario = require('../models/usuario')
 const Caneca = require('../models/caneca')
 const ProductoValido = require('../models/productovalido')
-
+const Puntaje = require('../models/puntaje')
 /**
  * Registrar codigos de barras
  */
@@ -13,25 +13,26 @@ const registrarBarras = async (req = request,
         const documento = req.uid
         const { caneca, latitud, longitud, codigos = [] } = codes
         let codigo = {}
-        const usuarioBD = await Usuario.findOne({documento})
-        if(!usuarioBD){
-            return res.status(400).json({msg: 'No existe usuario'})
-        }
-        codigo.usuario = { _id: usuarioBD._id}
-        const canecaBD = await Caneca.findOne(caneca)
+        
+        // verificar si la caneca existe
+        const canecaBD = await Caneca.findOne({infoQR : caneca})
         if(canecaBD){
             return res.status(400).json({msg: 'Ya existe caneca'})
         }
         codigo.caneca = caneca
-
         // validar posicion
         if(Math.abs(latitud - canecaBD.latitud) > 0.00008987 ||
            Math.abs(longitud - canecaBD.longitud) > 0.0001269) {
             return res.status(400).json({
                 msj: 'Su ubicación no es correcta'
             })
-         }
-
+        }
+        
+        const usuarioBD = await Usuario.findOne({documento})
+        if(!usuarioBD){
+            return res.status(400).json({msg: 'No existe usuario'})
+        }
+        codigo.usuario = { _id: usuarioBD._id}
 
         guardados = 0
         for(let cod of codigos) {
@@ -74,6 +75,13 @@ const registrarBarras = async (req = request,
             guardados++
             await barra.save()
         }
+        // asignamos puntaje
+        let puntaje = {}
+        puntaje.puntos = guardados
+        puntaje.usuario = { _id: usuarioBD._id}
+        puntaje.caneca = caneca
+        puntaje = new Puntaje(puntaje)
+        await puntaje.save()
         return res.status(201).json({
             completado: `${guardados}/${codigos.length}`,
             codes
