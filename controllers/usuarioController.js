@@ -4,8 +4,9 @@ const TipoDocumento = require('../models/tipodocumento')
 const { request, response } = require('express')
 const bcryptjs = require('bcryptjs')
 const { generarJWT } = require('../utils/generar-token')
+
 /**
- * Crea un usuario
+ * Registrar un usuario mediante formulario
  */
 const registrarUsuario = async (req = request, 
     res = response) => {
@@ -43,6 +44,9 @@ const registrarUsuario = async (req = request,
     }
 }
 
+/**
+ * Autenticarse al sistema y obtener token
+ */
 const login = async (req = request, 
     res = response) => {
     try{
@@ -74,8 +78,9 @@ const login = async (req = request,
 
 /**
  *  Consulta un usuario por su ID
- 
-const getUsuarioByID = async (req = request, 
+ */
+
+const obtenerUsuario = async (req = request, 
     res = response) => {
     try{
         const id = req.params.id
@@ -85,8 +90,7 @@ const getUsuarioByID = async (req = request,
     }catch(e){
         return res.status(500).json({msj: e})
     }
-}*/
-
+}
 /**
  * Actualiza un usuario por su ID
  
@@ -109,9 +113,9 @@ const updateUsuarioByID = async (req = request,
 
 module.exports = { 
     registrarUsuario, 
-    login
-    /*getUsuarios, 
-    getUsuarioByID,
+    login,
+    obtenerUsuario, 
+   /* getUsuarioByID,
     updateUsuarioByID,
     deleteUsuarioByID*/
 }

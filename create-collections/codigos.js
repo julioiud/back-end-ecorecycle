@@ -1,6 +1,6 @@
 db.codigos.insertMany([
     {
-        "serial": "",
+        "serial": "5449000000996",
         "descripcion": "",
         "usuario": {
            "_id": ""

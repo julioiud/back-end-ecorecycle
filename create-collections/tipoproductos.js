@@ -11,9 +11,14 @@ db.tipoproductos.insertMany([
     }
   ]);
 
-  /*db.tipoproductos.insertOne({
-        "nombre": "carton",
-        "descripcion": "cajas de carton",
+db.tipoproductos.insertOne({
+        "nombre": "lata",
+        "descripcion": "Latas cerveza, gaseosa, etc",
         "fechaCreacion": new Date()
-    });*/
+});
   
+db.tipoproductos.insertOne({
+    "nombre": "desconocido",
+    "descripcion": "Por defecto si no se localiza",
+    "fechaCreacion": new Date()
+});
