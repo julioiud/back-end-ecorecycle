@@ -3,23 +3,26 @@ const Usuario = require('../models/usuario')
 const Caneca = require('../models/caneca')
 const ProductoValido = require('../models/productovalido')
 const Puntaje = require('../models/puntaje')
+const mongoose = require('mongoose');
 /**
  * Registrar codigos de barras
  */
 const registrarBarras = async (req = request, 
     res = response) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try{
         const codes = req.body
         const documento = req.uid
-        const { caneca, latitud, longitud, codigos = [] } = codes
+        const { qrCaneca, latitud, longitud, codigos = [] } = codes
         let codigo = {}
-        
+        console.log(qrCaneca)
         // verificar si la caneca existe
-        const canecaBD = await Caneca.findOne({infoQR : caneca})
-        if(canecaBD){
-            return res.status(400).json({msg: 'Ya existe caneca'})
+        const canecaBD = await Caneca.findOne({infoQR : qrCaneca})
+        if(!canecaBD){
+            return res.status(400).json({msg: 'No existe caneca'})
         }
-        codigo.caneca = caneca
+        codigo.caneca = {_id: canecaBD._id}
         // validar posicion
         if(Math.abs(latitud - canecaBD.latitud) > 0.00008987 ||
            Math.abs(longitud - canecaBD.longitud) > 0.0001269) {
@@ -73,48 +76,56 @@ const registrarBarras = async (req = request,
 
             const barra = new Codigo(codigo)
             guardados++
-            await barra.save()
+            await barra.save({ session })
         }
         // asignamos puntaje
         let puntaje = {}
         puntaje.puntos = guardados
-        puntaje.usuario = { _id: usuarioBD._id}
-        puntaje.caneca = caneca
+        puntaje.usuario = codigo.usuario
+        puntaje.caneca = codigo.caneca
         puntaje = new Puntaje(puntaje)
-        await puntaje.save()
+        await puntaje.save({ session })
+        await session.commitTransaction();
         return res.status(201).json({
             completado: `${guardados}/${codigos.length}`,
             codes
         })
-    }catch(e){
+    } catch(e){
         console.log(e)
+        await session.abortTransaction();
         return res.status(500).json({e})
+    } finally{
+        session.endSession();
     }
 }
 
 const validarBarra = async (req = request, 
     res = response) => {
     try{
-        const valido = true
-        const noreciclado = true
-        const serial = req.params.serial
-        const barraDB = await Codigo.findOne({serial})
-        if(barraDB) {
+        let valido = true
+        let noreciclado = true
+        const serial = String(req.params.serial)
+        console.log(serial)
+        const barraDB = await Codigo.findOne({ serial })
+        const len = serial.length
+        if ( barraDB) {
             noreciclado = false
         }
         // validamos producto y obtenemos su tipo
         let patron = ''
         //8 712000 900045
-        if(serial.length == 13){
+        if(len == 13) {
           patron = serial.slice(0, 7)
         }
         //08 712000 900045
-        else if(serial.length == 14){
+        else if(len == 14){
            patron = serial.slice(0, 8)
         }
          //008 712000 900045
-        else if(serial.length == 15){
+        else if(len == 15){
            patron = serial.slice(0, 9)
+        } else {
+            valido = false
         }
 
         const productoValidoBD = 
@@ -127,7 +138,7 @@ const validarBarra = async (req = request,
             valido,
             noreciclado
         })
-    }catch(e){
+    } catch(e){
         return res.status(500).json({msj: e})
     }
 }

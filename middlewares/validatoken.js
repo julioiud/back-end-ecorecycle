@@ -3,6 +3,7 @@ const { response, request } = require('express')
 
 const validarToken = (req = request, res = response, next) => {
     const token = req.header('token')
+    
     if(!token) {
         return res.status(401)
         .json({msj: 'No tienes permisos'})
@@ -12,7 +13,7 @@ const validarToken = (req = request, res = response, next) => {
        req.uid = uid
     }catch(e){
         return res.status(401)
-        .json({msj: 'Token inválido'})
+         .json({msj: 'Token inválido'})
     }
     next()
 }
