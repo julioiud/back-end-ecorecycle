@@ -16,13 +16,14 @@ const registrarBarras = async (req = request,
         const documento = req.uid
         const { qrCaneca, latitud, longitud, codigos = [] } = codes
         let codigo = {}
-        console.log(qrCaneca)
+
         // verificar si la caneca existe
         const canecaBD = await Caneca.findOne({infoQR : qrCaneca})
         if(!canecaBD){
             return res.status(400).json({msg: 'No existe caneca'})
         }
         codigo.caneca = {_id: canecaBD._id}
+
         // validar posicion
         if(Math.abs(latitud - canecaBD.latitud) > 0.00008987 ||
            Math.abs(longitud - canecaBD.longitud) > 0.0001269) {
@@ -37,7 +38,7 @@ const registrarBarras = async (req = request,
         }
         codigo.usuario = { _id: usuarioBD._id}
 
-        guardados = 0
+        let guardados = 0
         for(let cod of codigos) {
             codigo.serial = cod.serial
 
@@ -75,8 +76,10 @@ const registrarBarras = async (req = request,
             codigo.tipoProducto = productoValidoBD.tipoProducto
 
             const barra = new Codigo(codigo)
-            guardados++
+            
             await barra.save({ session })
+
+            guardados++
         }
         // asignamos puntaje
         let puntaje = {}

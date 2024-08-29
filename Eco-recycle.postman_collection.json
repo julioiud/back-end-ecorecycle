@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "50627b93-2a17-4b81-bb3e-4ff0ebd43583",
+		"name": "Eco-recycle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19302512"
+	},
+	"item": [
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "Registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoDocumento\": {\r\n       \"_id\": \"66ce5eeed36d7c7bd39da88d\"\r\n    },\r\n    \"documento\": \"10967153\",\r\n    \"email\": \"julio.martinez@iudigital.edu.co\",\r\n    \"contrasena\": \"123456\",\r\n    \"nombre\": \"Julio\",\r\n    \"apellido\": \"Martinez\",\r\n    \"grado\": {\r\n        \"_id\" : \"66ce603fd36d7c7bd39da895\"\r\n    },\r\n    \"seccion\": {\r\n        \"_id\" : \"66ce6030d36d7c7bd39da893\"\r\n    },\r\n    \"genero\": \"M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/v1/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"julio.martinez@iudigital.edu.co\",\r\n    \"contrasena\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/v1/usuarios/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerPerfil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk0Nzg5MywiZXhwIjoxNzI0OTkxMDkzfQ.8FPE_jLUKxHOUyjIWE7e1rpFW9fNT7EPzAXFiZ7M6y4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/api/v1/usuarios/perfil",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"perfil"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "puntaje",
+			"item": [
+				{
+					"name": "obtenerPuntajeUsuario",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk0Nzg5MywiZXhwIjoxNzI0OTkxMDkzfQ.8FPE_jLUKxHOUyjIWE7e1rpFW9fNT7EPzAXFiZ7M6y4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/api/v1/puntajes",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"puntajes"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk0Nzg5MywiZXhwIjoxNzI0OTkxMDkzfQ.8FPE_jLUKxHOUyjIWE7e1rpFW9fNT7EPzAXFiZ7M6y4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "barras",
+			"item": [
+				{
+					"name": "validarBarra",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk1MTY0MiwiZXhwIjoxNzI0OTk0ODQyfQ.10Z1_S3ArHsKt84Bc2scfNsDK7EALYwEUXzRW8aSOPI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/api/v1/codigos/00000000",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"codigos",
+								"00000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "scanearBarras",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk0Nzg5MywiZXhwIjoxNzI0OTkxMDkzfQ.8FPE_jLUKxHOUyjIWE7e1rpFW9fNT7EPzAXFiZ7M6y4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"qrCaneca\": \"eco-recycle.rec001\",\r\n     \"codigos\" : [\r\n        {\r\n            \"serial\": \"8712000900045\",\r\n            \"descripcion\": \"lata cerveza\"\r\n        },\r\n        {\r\n            \"serial\": \"5449000000996\",\r\n            \"descripcion\": \"botella plastico\"\r\n        }\r\n     ],\r\n     \"latitud\": 6.2040175,\r\n     \"longitud\": -75.5494086\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/v1/codigos",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"codigos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "canecas",
+			"item": [
+				{
+					"name": "obtenerCanecas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMDk2NzE1MyIsImlhdCI6MTcyNDk0Nzg5MywiZXhwIjoxNzI0OTkxMDkzfQ.8FPE_jLUKxHOUyjIWE7e1rpFW9fNT7EPzAXFiZ7M6y4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/api/v1/canecas",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"canecas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
