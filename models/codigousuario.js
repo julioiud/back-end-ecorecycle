@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+/*const { Schema, model } = require('mongoose')
 
 const CodigoUsuarioSchema = Schema({
     usuario: {
@@ -22,4 +22,4 @@ const CodigoUsuarioSchema = Schema({
     }
 })
 
-module.exports = model('CodigoUsuario', CodigoUsuarioSchema)
+module.exports = model('CodigoUsuario', CodigoUsuarioSchema)*/

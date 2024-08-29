@@ -2,7 +2,8 @@ const { Router } = require('express')
 const { 
     registrarUsuario, 
     login,
-    /*getUsuarios, 
+    obtenerUsuario
+    /*
     getUsuarioByID,
     updateUsuarioByID,
     deleteUsuarioByID*/
@@ -26,8 +27,8 @@ router.get('/', getUsuarios) */
 
 /**
  *  Consulta un usuario por su ID
-
-router.get('/:id', getUsuarioByID) */
+*/
+router.get('/:id', obtenerUsuario) 
 
 /**
  * Actualiza un usuario por su ID
