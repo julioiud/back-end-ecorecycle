@@ -4,6 +4,8 @@ const TipoDocumento = require('../models/tipodocumento')
 const { request, response } = require('express')
 const bcryptjs = require('bcryptjs')
 const { generarJWT } = require('../utils/generar-token')
+const Seccion = require('../models/seccion')
+const Grado = require('../models/grado')
 
 /**
  * Registrar un usuario mediante formulario
@@ -83,12 +85,31 @@ const login = async (req = request,
 const obtenerUsuario = async (req = request, 
     res = response) => {
     try{
-        const id = req.params.id
-        const filter = { _id: id}
-        const usuarioDB = await Usuario.findOne(filter)
+        const uid = req.uid
+        const usuarioDB = 
+            await Usuario
+            .findOne({ documento: uid})
+            .populate({
+                path: 'tipoDocumento',
+                select: '_id nombre descripcion'
+            })
+            .populate({
+                path: 'grado',
+                select: '_id nombre'
+            })
+            .populate({
+                path: 'seccion'
+            })
+            .populate({
+                path: 'role',
+                select: '_id nombre descripcion'
+            })
+        if(!usuarioDB.enabled){
+          return res.status(401).json({msg: 'Usuario deshabilitado'})
+        }
         return res.json(usuarioDB)
     }catch(e){
-        return res.status(500).json({msj: e})
+        return res.status(500).json({msj: 'Error de Backend'})
     }
 }
 /**

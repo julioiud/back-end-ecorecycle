@@ -11,7 +11,12 @@ const obtenerPuntajeporUsuario = async (req = request,
         .find()
         .populate({
             path: 'usuario',
-            match: { documento: uid } 
+            match: { documento: uid },
+            select: '_id nombre documento email'
+        })
+        .populate({
+            path: 'caneca',
+            select: '_id ubicacion infoQR'
         })
         return res.json(puntajeDB)
     }catch(e){

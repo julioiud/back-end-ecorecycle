@@ -8,6 +8,7 @@ const {
     updateUsuarioByID,
     deleteUsuarioByID*/
 } = require('../controllers/usuarioController')
+const { validarToken } = require('../middlewares/validatoken')
 
 // TODO: IMPLEMENTAR express-validation
 
@@ -28,7 +29,7 @@ router.get('/', getUsuarios) */
 /**
  *  Consulta un usuario por su ID
 */
-router.get('/:id', obtenerUsuario) 
+router.get('/perfil', [validarToken], obtenerUsuario) 
 
 /**
  * Actualiza un usuario por su ID
