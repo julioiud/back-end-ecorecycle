@@ -27,7 +27,15 @@ db.grados.insertMany([
 ]);
 
   /*db.grados.insertOne({
-        "nombre": "carton",
-        "descripcion": "cajas de carton",
-        "fechaCreacion": new Date()
+        "nombre" : "tercero",
+        "descripcion" : "grado tercero de primaria",
+        "fechaCreacion" : new Date(),
+        "fechaActualizacion": null,
     });*/
+
+    db.grados.insertOne({
+        "nombre" : "undecimo",
+        "descripcion" : "grado once bachillerato",
+        "fechaCreacion" : new Date(),
+        "fechaActualizacion": null,
+    });

@@ -33,6 +33,7 @@ const registrarBarras = async (req = request,
         }
         
         const usuarioBD = await Usuario.findOne({documento})
+        
         if(!usuarioBD){
             return res.status(400).json({msg: 'No existe usuario'})
         }

@@ -1,5 +1,6 @@
 const Puntaje = require('../models/puntaje')
-
+const usuario = require('../models/usuario')
+const Usuario = require('../models/usuario')
 /**
  *  Consulta Puntaje por su usuario
  */
@@ -7,13 +8,9 @@ const obtenerPuntajeporUsuario = async (req = request,
     res = response) => {
     try{
         const uid = req.uid
+        const usuarioBD = await Usuario.findOne({ documento: uid})
         const puntajeDB = await Puntaje
-        .find()
-        .populate({
-            path: 'usuario',
-            match: { documento: uid },
-            select: '_id nombre documento email'
-        })
+        .findOne({usuario : usuarioBD})
         .populate({
             path: 'caneca',
             select: '_id ubicacion infoQR'
