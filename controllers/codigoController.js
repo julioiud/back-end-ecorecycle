@@ -4,6 +4,8 @@ const Caneca = require('../models/caneca')
 const ProductoValido = require('../models/productovalido')
 const Puntaje = require('../models/puntaje')
 const mongoose = require('mongoose');
+
+const MAXIMO_BARRAS = 5
 /**
  * Registrar codigos de barras
  */
@@ -43,9 +45,9 @@ const registrarBarras = async (req = request,
         for(let cod of codigos) {
             codigo.serial = cod.serial
 
-            const barrBD = await Codigo.findOne({serial: cod.serial})
-            if(barrBD){
-                console.log('Barra', codigo.serial, 'ya fue reciclada!')
+            const barrsBD = await Codigo.find({serial: cod.serial})
+            if(barrsBD.length >= MAXIMO_BARRAS){
+                console.log('Barra', codigo.serial, 'Muchas barras iguales!')
                 continue;
             }
             
@@ -110,9 +112,9 @@ const validarBarra = async (req = request,
         let noreciclado = true
         const serial = String(req.params.serial)
         console.log(serial)
-        const barraDB = await Codigo.findOne({ serial })
+        const barrasDB = await Codigo.find({ serial })
         const len = serial.length
-        if ( barraDB) {
+        if ( barrasDB.length >= MAXIMO_BARRAS) {
             noreciclado = false
         }
         // validamos producto y obtenemos su tipo
