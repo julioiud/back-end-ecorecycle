@@ -1,5 +1,4 @@
-db.tipoproductos.insertMany([
-    {
+db.tipoproductos.insertMany([{
         "nombre": "vidrio",
         "descripcion": "Envases, botellas de vidrio",
         "fechaCreacion": new Date()
@@ -9,16 +8,21 @@ db.tipoproductos.insertMany([
         "descripcion": "Envases, bolsas de plástico",
         "fechaCreacion": new Date()
     }
-  ]);
+]);
 
 db.tipoproductos.insertOne({
-        "nombre": "lata",
-        "descripcion": "Latas cerveza, gaseosa, etc",
-        "fechaCreacion": new Date()
+    "nombre": "lata",
+    "descripcion": "Latas cerveza, gaseosa, etc",
+    "fechaCreacion": new Date()
 });
-  
+
 db.tipoproductos.insertOne({
     "nombre": "desconocido",
     "descripcion": "Por defecto si no se localiza",
+    "fechaCreacion": new Date()
+});
+db.tipoproductos.insertOne({
+    "nombre": "carton",
+    "descripcion": "Cajas, paquetes de cereal, etc",
     "fechaCreacion": new Date()
 });
