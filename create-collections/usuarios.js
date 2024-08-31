@@ -1,0 +1,20 @@
+db.usuarios.insertOne({
+    "tipoDocumento": {
+       "_id": "66ce5eeed36d7c7bd39da88d"
+    },
+    "documento": "10967153",
+    "email": "julio.martinez@iudigital.edu.co",
+    "contrasena": "123456",
+    "nombre": "Julio",
+    "apellido": "Martinez",
+    "grado": {
+        "_id" : "66ce603fd36d7c7bd39da895"
+    },
+    "seccion": {
+        "_id" : "66ce6030d36d7c7bd39da893"
+    },
+    "genero": "M",
+    "role": {
+        "_id": ""
+    }
+});

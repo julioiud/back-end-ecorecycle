@@ -10,6 +10,10 @@ const ProductoValidoSchema = Schema({
     patron: {
         type: String
     },
+    tipoProducto : {
+        type: Schema.Types.ObjectId,
+        ref: 'TipoProducto'
+    },
     fechaCreacion: {
         type: Date,
         default: new Date()

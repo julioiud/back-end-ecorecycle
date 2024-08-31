@@ -12,6 +12,10 @@ const PuntajeSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
+    },
+    caneca: {
+        type: Schema.Types.ObjectId,
+        ref: 'Caneca'
     }
 })
 

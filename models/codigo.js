@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose')
 const CodigoSchema = Schema({
     serial: {
         type: String,
-        unique: [true, 'Material ya reciclado']
+        required: true,
+        //unique: [true, 'Material ya reciclado'] --> no son únicas las barras
     },
     descripcion: {
         type: String
@@ -15,6 +16,11 @@ const CodigoSchema = Schema({
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
+        required: true
+    },
+    caneca: {
+        type: Schema.Types.ObjectId,
+        ref: 'Caneca',
         required: true
     },
     tipoProducto : {
