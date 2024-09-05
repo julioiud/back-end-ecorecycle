@@ -339,3 +339,12 @@ db.productovalidos.insertMany([{
         "fechaActualizacion": null,
     },
 ]);
+db.productovalidos.insertOne({
+    "serial": "38",
+    "patron": "4005808",
+    "fechaCreacion": new Date(),
+    "tipoProducto": {
+        "_id": "66cf86cbfc6212acf142a0b7" // lata
+    },
+    "fechaActualizacion": null,
+});
