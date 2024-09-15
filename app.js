@@ -8,7 +8,10 @@ mongoConection()
 
 app.use(
     cors({
-        origin: '*'
+        origin: '*', // Solo permite solicitudes desde el frontend local
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Permite métodos
+        allowedHeaders: ['Content-Type', 'Authorization', 'token'], // Cabeceras permitidas
+        credentials: true
     })
 )
 app.use(express.json())
