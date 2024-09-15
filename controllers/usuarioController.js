@@ -53,7 +53,20 @@ const login = async (req = request,
     res = response) => {
     try{
         const { email, contrasena } = req.body
-        const usuarioBD = await Usuario.findOne({email})
+        const usuarioBD = await Usuario
+        .findOne({email, enabled: true})
+        .populate({
+            path: 'role',
+            select: '_id nombre descripcion'
+        })
+        .populate({
+            path: 'grado',
+            select: 'nombre'
+        })
+        .populate({
+            path: 'seccion',
+            select: 'nombre'
+        })
         if(!usuarioBD){
             return res.status(401).json({msg: 'No existe usuario'})
         }

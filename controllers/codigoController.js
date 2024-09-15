@@ -46,7 +46,7 @@ const registrarBarras = async (req = request,
             codigo.serial = cod.serial
 
             const barrsBD = await Codigo.find({serial: cod.serial})
-            if(barrsBD.length >= MAXIMO_BARRAS){
+            if(barrsBD.length >= MAXIMO_BARRAS){//TODO: PARAMETRIZAR SEGUN EL USUARIO
                 console.log('Barra', codigo.serial, 'Muchas barras iguales!')
                 continue;
             }
@@ -85,12 +85,15 @@ const registrarBarras = async (req = request,
             guardados++
         }
         // asignamos puntaje
-        let puntaje = {}
-        puntaje.puntos = guardados
-        puntaje.usuario = codigo.usuario
-        puntaje.caneca = codigo.caneca
-        puntaje = new Puntaje(puntaje)
-        await puntaje.save({ session })
+        //if(guardados > 0) {// si fueron ceros, que lo registre de todos modos, como un intento fallido
+            let puntaje = {}
+            puntaje.puntos = guardados
+            puntaje.usuario = codigo.usuario
+            puntaje.caneca = codigo.caneca
+            puntaje = new Puntaje(puntaje)
+            await puntaje.save({ session })
+        //}
+
         await session.commitTransaction();
         return res.status(201).json({
             completado: `${guardados}/${codigos.length}`,
@@ -114,7 +117,7 @@ const validarBarra = async (req = request,
         console.log(serial)
         const barrasDB = await Codigo.find({ serial })
         const len = serial.length
-        if ( barrasDB.length >= MAXIMO_BARRAS) {
+        if ( barrasDB.length >= MAXIMO_BARRAS) {//TODO: PARAMETRIZAR SEGUN EL USUARIO
             noreciclado = false
         }
         // validamos producto y obtenemos su tipo
