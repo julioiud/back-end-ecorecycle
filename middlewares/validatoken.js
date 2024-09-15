@@ -3,8 +3,9 @@ const { response, request } = require('express')
 
 const validarToken = (req = request, res = response, next) => {
     const token = req.header('token')
-    
+    console.log(token)
     if(!token) {
+        console.log('error token')
         return res.status(401)
         .json({msj: 'No tienes permisos'})
     }
@@ -12,6 +13,7 @@ const validarToken = (req = request, res = response, next) => {
        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
        req.uid = uid
     }catch(e){
+        console.log(e)
         return res.status(401)
          .json({msj: 'Token inválido'})
     }
