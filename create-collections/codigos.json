@@ -1,0 +1,15 @@
+{
+    "caneca": "eco-recycle.rec001",
+    "codigos" : [
+       {
+           "serial": "8712000900045",
+           "descripcion": "lata cerveza"
+       },
+       {
+           "serial": "5449000000996",
+           "descripcion": "botella plastico"
+       }
+    ],
+    "latitud": 6.2040175,
+    "longitud": -75.5494086
+}
