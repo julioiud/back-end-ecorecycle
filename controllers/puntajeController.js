@@ -9,8 +9,9 @@ const obtenerPuntajesporUsuario = async (req = request,
     try{
         const uid = req.uid
         const usuarioBD = await Usuario.findOne({ documento: uid})
-        const puntajeDB = await Puntaje
-        .find({usuario : usuarioBD})
+        let puntajeDB = []
+        puntajeDB = await Puntaje
+        .findAll({usuario : usuarioBD})
         .populate({
             path: 'caneca',
             select: '_id ubicacion infoQR'
