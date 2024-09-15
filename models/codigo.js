@@ -20,8 +20,7 @@ const CodigoSchema = Schema({
     },
     caneca: {
         type: Schema.Types.ObjectId,
-        ref: 'Caneca',
-        required: true
+        ref: 'Caneca'
     },
     tipoProducto : {
         type: Schema.Types.ObjectId,
