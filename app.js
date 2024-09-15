@@ -8,7 +8,7 @@ mongoConection()
 
 app.use(
     cors({
-        origin: '*', // Solo permite solicitudes desde el frontend local
+        origin: '*',
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Permite métodos
         allowedHeaders: ['Content-Type', 'Authorization', 'token'], // Cabeceras permitidas
         credentials: true
