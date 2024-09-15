@@ -11,13 +11,15 @@ const obtenerPuntajesporUsuario = async (req = request,
         const usuarioBD = await Usuario.findOne({ documento: uid})
         let puntajeDB = []
         puntajeDB = await Puntaje
-        .findAll({usuario : usuarioBD})
+        .find({usuario : usuarioBD})
         .populate({
             path: 'caneca',
             select: '_id ubicacion infoQR'
         })
+        console.log(puntajeDB)
         return res.json(puntajeDB)
     }catch(e){
+        console.log(e)
         return res.status(500).json({msj: e})
     }
 }
