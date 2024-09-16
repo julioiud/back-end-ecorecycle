@@ -33,9 +33,9 @@ const UsuarioSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Grado'
     },
-    seccion: {
+    seccione: {
         type: Schema.Types.ObjectId,
-        ref: 'Seccion'
+        ref: 'Seccione'
     },
     fechaCreacion: {
         type: Date,
