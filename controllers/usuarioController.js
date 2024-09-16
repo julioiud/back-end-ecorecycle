@@ -4,7 +4,7 @@ const TipoDocumento = require('../models/tipodocumento')
 const { request, response } = require('express')
 const bcryptjs = require('bcryptjs')
 const { generarJWT } = require('../utils/generar-token')
-const Seccion = require('../models/seccion')
+const Seccion = require('../models/seccione')
 const Grado = require('../models/grado')
 
 /**
