@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const SeccionSchema = Schema({
+const SeccioneSchema = Schema({
     nombre: {
         type: String,
         required: [true, 'Nombre es requerido'],
@@ -19,4 +19,4 @@ const SeccionSchema = Schema({
     }
 })
 
-module.exports = model('Seccion', SeccionSchema)
+module.exports = model('Seccione', SeccioneSchema)
