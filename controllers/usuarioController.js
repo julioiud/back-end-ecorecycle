@@ -4,7 +4,7 @@ const TipoDocumento = require('../models/tipodocumento')
 const { request, response } = require('express')
 const bcryptjs = require('bcryptjs')
 const { generarJWT } = require('../utils/generar-token')
-const Seccion = require('../models/seccione')
+const Seccione = require('../models/seccione')
 const Grado = require('../models/grado')
 
 /**
@@ -64,7 +64,7 @@ const login = async (req = request,
             select: 'nombre'
         })
         .populate({
-            path: 'seccion',
+            path: 'seccione',
             select: 'nombre'
         })
         if(!usuarioBD){
@@ -111,7 +111,7 @@ const obtenerUsuario = async (req = request,
                 select: '_id nombre'
             })
             .populate({
-                path: 'seccion'
+                path: 'seccione'
             })
             .populate({
                 path: 'role',
