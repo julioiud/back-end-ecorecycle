@@ -6,6 +6,8 @@ const Puntaje = require('../models/puntaje')
 const mongoose = require('mongoose');
 
 const MAXIMO_BARRAS = 5
+
+const toleranciaLatitud = 100/111320
 /**
  * Registrar codigos de barras
  */
@@ -27,8 +29,10 @@ const registrarBarras = async (req = request,
         codigo.caneca = {_id: canecaBD._id}
 
         // validar posicion
-        if(Math.abs(latitud - canecaBD.latitud) > 0.00008987 ||
-           Math.abs(longitud - canecaBD.longitud) > 0.0001269) {
+        const toleranciaLongitud = (100/78625) / (Math.cos(latitud * Math.PI / 180))
+
+        if(Math.abs(latitud - canecaBD.latitud) > toleranciaLatitud ||
+           Math.abs(longitud - canecaBD.longitud) > toleranciaLongitud) {
             return res.status(400).json({
                 msj: 'Su ubicación no es correcta'
             })
