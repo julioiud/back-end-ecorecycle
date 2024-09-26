@@ -348,3 +348,12 @@ db.productovalidos.insertOne({
     },
     "fechaActualizacion": null,
 });
+db.productovalidos.insertOne({
+    "serial": "39",
+    "patron": "7709832",
+    "fechaCreacion": new Date(),
+    "tipoProducto": {
+        "_id": "66cf88e9fc6212acf142a0b9" // plastico
+    },
+    "fechaActualizacion": null,
+});
